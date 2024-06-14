@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using uClicker;
 using UnityEngine;
+using System;
 
 public class ClickerRunner : MonoBehaviour
 {
@@ -9,7 +10,15 @@ public class ClickerRunner : MonoBehaviour
     // Use this for initialization
     IEnumerator Start()
     {
-        Manager.LoadProgress();
+    
+        try
+        {
+            Manager.LoadProgress();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("No save!");
+        }
         while (Application.isPlaying)
         {
             yield return new WaitForSecondsRealtime(1);
